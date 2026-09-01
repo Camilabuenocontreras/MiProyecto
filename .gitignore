@@ -11,3 +11,8 @@ desktop.ini
 node_modules/
 dist/
 .env
+
+# Skills de agentes (herramienta personal, no parte del sitio)
+.agents/
+.claude/
+skills-lock.json
