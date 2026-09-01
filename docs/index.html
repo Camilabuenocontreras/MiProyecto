@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sonrisa Imperial</title>
+<meta name="description" content="Clinica dental Sonrisa Imperial. Agende su hora en menos de un minuto: elija el dia y nosotros confirmamos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;600&family=Marcellus&family=Marcellus+SC&display=swap">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+
+  :root {
+    --ground:#F4F6F4;
+    --surface:#FFFFFF;
+    --sunken:#EAEEEB;
+    --ink:#121A17;
+    --muted:#59635F;
+    --line:#D7DDD8;
+    --line-strong:#BEC7C1;
+    --primary:#0B3A32;
+    --primary-hover:#0F4E43;
+    --on-primary:#F4F6F4;
+    --accent:#A5854A;
+    --accent-ink:#7A6130;
+    --danger:#8A3324;
+    --shadow: 0 1px 2px rgba(18,26,23,.04), 0 14px 34px -20px rgba(18,26,23,.30);
+
+    --step--1: 0.815rem;
+    --step-0:  1.0625rem;
+    --step-1:  1.25rem;
+    --step-2:  1.55rem;
+    --step-3:  2.05rem;
+    --step-4:  clamp(2.4rem, 1.6rem + 3.2vw, 3.9rem);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B100E;
+      --surface:#121A17;
+      --sunken:#0E1513;
+      --ink:#E7ECE8;
+      --muted:#96A19C;
+      --line:#242E2A;
+      --line-strong:#33403B;
+      --primary:#8FC3B2;
+      --primary-hover:#A9D5C6;
+      --on-primary:#06110D;
+      --accent:#C9A961;
+      --accent-ink:#D5B87A;
+      --danger:#E39383;
+      --shadow: 0 1px 2px rgba(0,0,0,.45), 0 18px 44px -24px rgba(0,0,0,.85);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:#0B100E;
+    --surface:#121A17;
+    --sunken:#0E1513;
+    --ink:#E7ECE8;
+    --muted:#96A19C;
+    --line:#242E2A;
+    --line-strong:#33403B;
+    --primary:#8FC3B2;
+    --primary-hover:#A9D5C6;
+    --on-primary:#06110D;
+    --accent:#C9A961;
+    --accent-ink:#D5B87A;
+    --danger:#E39383;
+    --shadow: 0 1px 2px rgba(0,0,0,.45), 0 18px 44px -24px rgba(0,0,0,.85);
+  }
+
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: Karla, "Helvetica Neue", Arial, sans-serif;
+    font-size: var(--step-0);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: Marcellus, "Times New Roman", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.14;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  p { margin: 0; }
+  a { color: inherit; }
+
+  .eyebrow {
+    font-family: "Marcellus SC", Marcellus, Georgia, serif;
+    font-size: var(--step--1);
+    letter-spacing: .15em;
+    color: var(--accent-ink);
+    margin: 0;
+  }
+
+  .wrap { width: min(1140px, 100% - 3rem); margin-inline: auto; }
+  @media (max-width: 640px) { .wrap { width: min(1140px, 100% - 2.25rem); } }
+
+  :where(a, button, input, select, textarea):focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* ---------- cabecera ---------- */
+  .masthead {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--ground) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .masthead__inner {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; padding: .8rem 0;
+  }
+  .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
+  .brand svg { display: block; color: var(--accent); flex: none; }
+  .brand__name {
+    font-family: Marcellus, Georgia, serif;
+    font-size: 1.18rem; letter-spacing: .085em; line-height: 1;
+  }
+  .masthead__side { display: flex; align-items: center; gap: 1.5rem; }
+  .masthead__tel {
+    font-size: var(--step--1); letter-spacing: .04em; color: var(--muted);
+    text-decoration: none; font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .masthead__tel:hover { color: var(--ink); }
+  @media (max-width: 640px) { .masthead__tel { display: none; } }
+
+  /* ---------- botones ---------- */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: .5rem; padding: .72rem 1.35rem;
+    font: inherit; font-size: var(--step--1); font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase; text-decoration: none;
+    background: var(--primary); color: var(--on-primary);
+    border: 1px solid var(--primary); border-radius: 2px;
+    cursor: pointer; transition: background .18s ease, border-color .18s ease;
+  }
+  .btn:hover { background: var(--primary-hover); border-color: var(--primary-hover); }
+  .btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+  .btn--ghost:hover { background: var(--sunken); border-color: var(--ink); }
+  .btn--block { width: 100%; padding-block: .95rem; }
+
+  /* ---------- portada ---------- */
+  .hero { padding: clamp(3rem, 6vw, 5.5rem) 0 clamp(2.5rem, 5vw, 4.5rem); }
+  .hero__grid {
+    display: grid; gap: clamp(2.75rem, 5vw, 4.5rem);
+    grid-template-columns: 1fr; align-items: start;
+  }
+  @media (min-width: 940px) {
+    .hero__grid { grid-template-columns: minmax(0, 1.02fr) minmax(400px, .98fr); }
+  }
+  .hero__copy { display: flex; flex-direction: column; gap: 1.5rem; }
+  .hero h1 { font-size: var(--step-4); letter-spacing: -.005em; max-width: 15ch; }
+  .hero__lead { color: var(--muted); max-width: 44ch; font-size: var(--step-1); line-height: 1.55; }
+  .hero__rule { width: 3.25rem; height: 1px; background: var(--accent); }
+
+  .facts { list-style: none; margin: .25rem 0 0; padding: 0; display: grid; gap: .55rem; }
+  .facts li {
+    display: grid; grid-template-columns: auto 1fr; gap: .75rem; align-items: baseline;
+    font-size: var(--step--1); color: var(--muted); letter-spacing: .01em;
+  }
+  .facts li::before {
+    content: ""; width: 1.1rem; height: 1px;
+    background: var(--line-strong); transform: translateY(-.3em);
+  }
+
+  /* ---------- tarjeta de agenda ---------- */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    box-shadow: var(--shadow);
+    padding: clamp(1.5rem, 3vw, 2.1rem);
+  }
+  .card__head {
+    display: flex; flex-direction: column; gap: .35rem;
+    padding-bottom: 1.1rem; border-bottom: 1px solid var(--accent);
+  }
+  .card__head h2 { font-size: var(--step-2); }
+  .card__head p { font-size: var(--step--1); color: var(--muted); }
+
+  .form { display: grid; gap: 1.15rem; padding-top: 1.4rem; }
+  .field { display: grid; gap: .4rem; }
+  .row { display: grid; gap: 1.15rem; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 480px) { .row { grid-template-columns: 1fr; } }
+
+  .label {
+    font-size: .74rem; font-weight: 600; letter-spacing: .13em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .label .opt { font-weight: 400; letter-spacing: .04em; text-transform: none; }
+
+  .input {
+    font: inherit; font-size: var(--step-0); color: var(--ink);
+    background: var(--sunken);
+    border: 1px solid transparent; border-bottom: 1px solid var(--line-strong);
+    border-radius: 2px 2px 0 0;
+    padding: .68rem .75rem; width: 100%;
+    transition: border-color .16s ease, background .16s ease;
+  }
+  .input::placeholder { color: color-mix(in srgb, var(--muted) 70%, transparent); }
+  .input:hover { border-bottom-color: var(--ink); }
+  .input:focus { outline: none; background: var(--surface); border-color: var(--primary); }
+  .input:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+  select.input {
+    appearance: none; cursor: pointer;
+    background-image:
+      linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: right 1.05rem top 56%, right .7rem top 56%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+  }
+  textarea.input { resize: vertical; min-height: 4.5rem; line-height: 1.5; }
+  .input[aria-invalid="true"] { border-color: var(--danger); }
+
+  .segmented { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .segmented input { position: absolute; opacity: 0; pointer-events: none; }
+  .segmented label {
+    display: block; text-align: center; cursor: pointer;
+    padding: .62rem .5rem; font-size: var(--step--1); letter-spacing: .04em;
+    border: 1px solid var(--line-strong); border-radius: 2px; color: var(--muted);
+    transition: background .16s ease, border-color .16s ease, color .16s ease;
+  }
+  .segmented label:hover { border-color: var(--ink); color: var(--ink); }
+  .segmented input:checked + label { background: var(--primary); border-color: var(--primary); color: var(--on-primary); }
+  .segmented input:focus-visible + label { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+  .error { font-size: .78rem; color: var(--danger); letter-spacing: .01em; }
+  .error:empty { display: none; }
+  .form__note { font-size: .8rem; color: var(--muted); text-align: center; line-height: 1.5; }
+  .form__note a { color: var(--accent-ink); text-underline-offset: 3px; }
+
+  .done { display: none; flex-direction: column; gap: 1.1rem; padding-top: 1.5rem; }
+  .done[data-visible="true"] { display: flex; }
+  .done h3 { font-size: var(--step-2); }
+  .done > p { color: var(--muted); font-size: var(--step--1); }
+  .done dl { margin: 0; display: grid; gap: .5rem; border-top: 1px solid var(--line); padding-top: 1.1rem; }
+  .done dl > div { display: grid; grid-template-columns: 8.5rem 1fr; gap: .5rem; font-size: var(--step--1); }
+  .done dt { color: var(--muted); letter-spacing: .04em; }
+  .done dd { margin: 0; }
+  .linkish {
+    justify-self: start; background: none; border: 0; padding: 0; cursor: pointer;
+    font: inherit; font-size: var(--step--1); color: var(--accent-ink);
+    text-decoration: underline; text-underline-offset: 3px;
+  }
+
+  /* ---------- secciones ---------- */
+  .section { padding: clamp(3rem, 5.5vw, 4.75rem) 0; border-top: 1px solid var(--line); }
+  .section__head { display: flex; flex-direction: column; gap: .7rem; margin-bottom: 2.25rem; max-width: 52ch; }
+  .section__head h2 { font-size: var(--step-3); }
+  .section__head p { color: var(--muted); }
+
+  .treatments { display: grid; }
+  .treatment {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto;
+    gap: .5rem 2rem; align-items: baseline;
+    padding: 1.15rem 0; border-top: 1px solid var(--line);
+  }
+  .treatment:last-child { border-bottom: 1px solid var(--line); }
+  .treatment h3 { font-size: var(--step-1); }
+  .treatment p { color: var(--muted); font-size: var(--step--1); margin-top: .3rem; max-width: 60ch; }
+  .treatment span {
+    font-size: var(--step--1); color: var(--muted);
+    font-variant-numeric: tabular-nums; letter-spacing: .05em; white-space: nowrap;
+  }
+
+  .steps { display: grid; gap: 1.75rem; grid-template-columns: 1fr; }
+  @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 2.25rem; } }
+  .step { border-top: 1px solid var(--accent); padding-top: 1rem; display: grid; gap: .5rem; }
+  .step__n { font-family: Marcellus, Georgia, serif; font-size: var(--step-2); color: var(--accent-ink); line-height: 1; }
+  .step h3 { font-size: var(--step-1); }
+  .step p { color: var(--muted); font-size: var(--step--1); }
+
+  .visit { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 860px) { .visit { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .hours { margin: 0; display: grid; }
+  .hours > div {
+    display: grid; grid-template-columns: 1fr auto; gap: 1rem;
+    padding: .7rem 0; border-top: 1px solid var(--line); font-size: var(--step--1);
+  }
+  .hours > div:last-child { border-bottom: 1px solid var(--line); }
+  .hours dt { color: var(--muted); }
+  .hours dd { margin: 0; font-variant-numeric: tabular-nums; letter-spacing: .03em; }
+  .contact { display: grid; gap: 1.4rem; align-content: start; }
+  .contact__block { display: grid; gap: .3rem; }
+  .contact__block a { text-decoration: none; }
+  .contact__block a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .contact__value { font-family: Marcellus, Georgia, serif; font-size: var(--step-1); }
+
+  .closing { text-align: center; display: grid; gap: 1.4rem; justify-items: center; }
+  .closing h2 { font-size: var(--step-3); max-width: 20ch; }
+  .closing p { color: var(--muted); max-width: 46ch; }
+
+  .footer { border-top: 1px solid var(--line); padding: 2rem 0 2.75rem; }
+  .footer__inner {
+    display: flex; flex-wrap: wrap; gap: .75rem 2rem;
+    align-items: center; justify-content: space-between;
+    font-size: .8rem; color: var(--muted);
+  }
+
+  .reveal { opacity: 0; transform: translateY(12px); animation: rise .7s cubic-bezier(.2,.7,.3,1) forwards; }
+  .hero__grid > :nth-child(2) { animation-delay: .14s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { animation: none; opacity: 1; transform: none; }
+    *, *::before, *::after { transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap masthead__inner">
+    <a class="brand" href="#inicio" aria-label="Sonrisa Imperial, inicio">
+      <svg width="26" height="30" viewBox="0 0 26 30" fill="none" aria-hidden="true">
+        <path d="M13 3.2 15.1 1l2 2.2L19.4 1l.6 3.4c3.2 1.7 4.9 4.7 4.9 8.7 0 3.6-1 6-2.3 9.4-1 2.7-1.8 6-3.4 6-1.5 0-2.1-2.1-2.7-4.4l-.9-3.3c-.4-1.3-2.3-1.3-2.7 0l-.9 3.3c-.6 2.3-1.2 4.4-2.7 4.4-1.6 0-2.4-3.3-3.4-6C4.6 18.9 3.6 16.5 3.6 12.9c0-4 1.7-7 4.9-8.7L9.1 1l2.3 2.2L13 3.2Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand__name">SONRISA IMPERIAL</span>
+    </a>
+    <div class="masthead__side">
+      <a class="masthead__tel" href="tel:+56221234567">+56 2 2123 4567</a>
+      <a class="btn" href="#agendar">Agendar hora</a>
+    </div>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div class="hero__copy reveal">
+        <p class="eyebrow">Clínica dental</p>
+        <h1>Su hora reservada en menos de un minuto.</h1>
+        <div class="hero__rule"></div>
+        <p class="hero__lead">Elija el día que le acomode y confirmamos por teléfono o WhatsApp el mismo día. Sin llamadas en espera y sin listas.</p>
+        <ul class="facts">
+          <li>Hora fija: atendemos a la hora agendada, no por orden de llegada</li>
+          <li>Presupuesto por escrito antes de iniciar cualquier tratamiento</li>
+          <li>Cupos de urgencia reservados todos los días</li>
+        </ul>
+      </div>
+
+      <div class="card reveal" id="agendar">
+        <div class="card__head">
+          <h2>Agende su hora</h2>
+          <p>Responda cuatro datos. Del resto nos encargamos nosotros.</p>
+        </div>
+
+        <form class="form" id="form-hora" novalidate>
+          <div class="field">
+            <label class="label" for="nombre">Nombre y apellido</label>
+            <input class="input" id="nombre" name="nombre" type="text" autocomplete="name" placeholder="María Fuentes" required>
+            <p class="error" id="err-nombre" aria-live="polite"></p>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label class="label" for="telefono">Teléfono</label>
+              <input class="input" id="telefono" name="telefono" type="tel" inputmode="tel" autocomplete="tel" placeholder="+56 9 1234 5678" required>
+              <p class="error" id="err-telefono" aria-live="polite"></p>
+            </div>
+            <div class="field">
+              <label class="label" for="fecha">Día preferido</label>
+              <input class="input" id="fecha" name="fecha" type="date" required>
+              <p class="error" id="err-fecha" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="motivo">Motivo de la consulta</label>
+            <select class="input" id="motivo" name="motivo" required>
+              <option value="" selected disabled>Seleccione una opción</option>
+              <option>Primera consulta y diagnóstico</option>
+              <option>Limpieza y prevención</option>
+              <option>Ortodoncia</option>
+              <option>Implantes y rehabilitación</option>
+              <option>Blanqueamiento</option>
+              <option>Urgencia (dolor o fractura)</option>
+            </select>
+            <p class="error" id="err-motivo" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <span class="label" id="lbl-horario">Horario</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="lbl-horario">
+              <div>
+                <input type="radio" id="h-manana" name="horario" value="Mañana (09:00 a 13:00)" checked>
+                <label for="h-manana">Mañana</label>
+              </div>
+              <div>
+                <input type="radio" id="h-tarde" name="horario" value="Tarde (14:00 a 19:00)">
+                <label for="h-tarde">Tarde</label>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn--block" type="submit">Solicitar hora</button>
+          <p class="form__note">Le confirmamos en menos de dos horas hábiles. ¿Prefiere hablar ahora? <a href="tel:+56221234567">+56 2 2123 4567</a></p>
+        </form>
+
+        <div class="done" id="confirmacion" role="status" aria-live="polite">
+          <h3>Solicitud recibida</h3>
+          <p id="confirmacion-texto">Gracias. Le llamamos dentro de las próximas dos horas hábiles para confirmar.</p>
+          <dl>
+            <div><dt>Día</dt><dd id="c-fecha"></dd></div>
+            <div><dt>Horario</dt><dd id="c-horario"></dd></div>
+            <div><dt>Motivo</dt><dd id="c-motivo"></dd></div>
+            <div><dt>Teléfono</dt><dd id="c-telefono"></dd></div>
+          </dl>
+          <button class="linkish" type="button" id="btn-otra">Enviar otra solicitud</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Tratamientos</p>
+        <h2>Lo que resolvemos</h2>
+        <p>Todo se decide en la primera consulta, con radiografía y presupuesto cerrado.</p>
+      </div>
+      <div class="treatments">
+        <article class="treatment">
+          <div>
+            <h3>Primera consulta y diagnóstico</h3>
+            <p>Examen completo, radiografía panorámica y plan de tratamiento por escrito.</p>
+          </div>
+          <span>40 min</span>
+        </article>
+        <article class="treatment">
+          <div>
+            <h3>Limpieza y prevención</h3>
+            <p>Destartraje, pulido y control de encías. Recomendado cada seis meses.</p>
+          </div>
+          <span>45 min</span>
+        </article>
+        <article class="treatment">
+          <div>
+            <h3>Ortodoncia</h3>
+            <p>Brackets estéticos o alineadores transparentes, con controles cada cuatro semanas.</p>
+          </div>
+          <span>12 a 24 meses</span>
+        </article>
+        <article class="treatment">
+          <div>
+            <h3>Implantes y rehabilitación</h3>
+            <p>Reposición de piezas perdidas, coronas y carillas de porcelana.</p>
+          </div>
+          <span>2 a 4 sesiones</span>
+        </article>
+        <article class="treatment">
+          <div>
+            <h3>Urgencia dental</h3>
+            <p>Dolor agudo, fractura o pérdida de una restauración. Cupos reservados a diario.</p>
+          </div>
+          <span>Mismo día</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <p class="eyebrow">Su primera visita</p>
+        <h2>Tres pasos, sin sorpresas</h2>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <span class="step__n">I</span>
+          <h3>Usted agenda</h3>
+          <p>Completa el formulario con el día y el horario que le acomodan.</p>
+        </article>
+        <article class="step">
+          <span class="step__n">II</span>
+          <h3>Nosotros confirmamos</h3>
+          <p>Le llamamos o escribimos por WhatsApp para cerrar la hora exacta.</p>
+        </article>
+        <article class="step">
+          <span class="step__n">III</span>
+          <h3>Viene a la consulta</h3>
+          <p>Diagnóstico, radiografía y presupuesto por escrito antes de tratar nada.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap visit">
+      <div>
+        <div class="section__head">
+          <p class="eyebrow">Horarios</p>
+          <h2>Cuándo atendemos</h2>
+        </div>
+        <dl class="hours">
+          <div><dt>Lunes a jueves</dt><dd>09:00 &ndash; 19:00</dd></div>
+          <div><dt>Viernes</dt><dd>09:00 &ndash; 17:00</dd></div>
+          <div><dt>Sábado</dt><dd>10:00 &ndash; 14:00</dd></div>
+          <div><dt>Domingo</dt><dd>Cerrado</dd></div>
+        </dl>
+      </div>
+      <div>
+        <div class="section__head">
+          <p class="eyebrow">Dónde estamos</p>
+          <h2>Cómo llegar</h2>
+        </div>
+        <div class="contact">
+          <div class="contact__block">
+            <span class="label">Dirección</span>
+            <span class="contact__value">Avenida Providencia 1234, oficina 802</span>
+            <span style="color:var(--muted); font-size:var(--step--1)">Providencia, Santiago &middot; Metro Manuel Montt, salida norte</span>
+          </div>
+          <div class="contact__block">
+            <span class="label">Teléfono</span>
+            <a class="contact__value" href="tel:+56221234567">+56 2 2123 4567</a>
+          </div>
+          <div class="contact__block">
+            <span class="label">Correo</span>
+            <a class="contact__value" href="mailto:hola@sonrisaimperial.cl">hola@sonrisaimperial.cl</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap closing">
+      <p class="eyebrow">Sonrisa Imperial</p>
+      <h2>Su próxima hora empieza aquí</h2>
+      <p>Deje sus datos y nos comunicamos hoy mismo para confirmar el día.</p>
+      <a class="btn" href="#agendar">Agendar hora</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <span>&copy; 2026 Clínica Dental Sonrisa Imperial</span>
+    <span>Avenida Providencia 1234, Santiago &middot; +56 2 2123 4567</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var form = document.getElementById('form-hora');
+  var done = document.getElementById('confirmacion');
+  var fecha = document.getElementById('fecha');
+
+  // El calendario no permite elegir días pasados.
+  var hoy = new Date();
+  hoy.setMinutes(hoy.getMinutes() - hoy.getTimezoneOffset());
+  fecha.min = hoy.toISOString().slice(0, 10);
+
+  var reglas = [
+    { id: 'nombre',   test: function (v) { return v.trim().length >= 3; },
+      msg: 'Escriba su nombre y apellido.' },
+    { id: 'telefono', test: function (v) { return v.replace(/\D/g, '').length >= 8; },
+      msg: 'Necesitamos un teléfono de contacto válido.' },
+    { id: 'fecha',    test: function (v) { return v !== '' && v >= fecha.min; },
+      msg: 'Elija una fecha de hoy en adelante.' },
+    { id: 'motivo',   test: function (v) { return v !== ''; },
+      msg: 'Indique el motivo de la consulta.' }
+  ];
+
+  function validar(regla, mostrar) {
+    var campo = document.getElementById(regla.id);
+    var aviso = document.getElementById('err-' + regla.id);
+    var ok = regla.test(campo.value);
+    if (mostrar) {
+      campo.setAttribute('aria-invalid', ok ? 'false' : 'true');
+      aviso.textContent = ok ? '' : regla.msg;
+    }
+    return ok;
+  }
+
+  reglas.forEach(function (regla) {
+    var campo = document.getElementById(regla.id);
+    campo.addEventListener('blur', function () { validar(regla, true); });
+    campo.addEventListener('input', function () {
+      if (campo.getAttribute('aria-invalid') === 'true') validar(regla, true);
+    });
+  });
+
+  function fechaLarga(valor) {
+    var partes = valor.split('-');
+    var d = new Date(partes[0], partes[1] - 1, partes[2]);
+    return d.toLocaleDateString('es-CL', {
+      weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+    });
+  }
+
+  form.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    var valido = true;
+    reglas.forEach(function (regla) { if (!validar(regla, true)) valido = false; });
+    if (!valido) {
+      form.querySelector('[aria-invalid="true"]').focus();
+      return;
+    }
+
+    var horario = form.querySelector('input[name="horario"]:checked');
+
+    // Aquí va el envío real: fetch() a su backend, Formspree, Netlify Forms, etc.
+    // Los datos están en new FormData(form).
+
+    document.getElementById('c-fecha').textContent = fechaLarga(fecha.value);
+    document.getElementById('c-horario').textContent = horario.value;
+    document.getElementById('c-motivo').textContent = document.getElementById('motivo').value;
+    document.getElementById('c-telefono').textContent = document.getElementById('telefono').value;
+    document.getElementById('confirmacion-texto').textContent =
+      'Gracias, ' + document.getElementById('nombre').value.trim().split(' ')[0] +
+      '. Le llamamos dentro de las próximas dos horas hábiles para confirmar la hora exacta.';
+
+    form.style.display = 'none';
+    done.setAttribute('data-visible', 'true');
+    done.querySelector('h3').setAttribute('tabindex', '-1');
+    done.querySelector('h3').focus();
+  });
+
+  document.getElementById('btn-otra').addEventListener('click', function () {
+    form.reset();
+    reglas.forEach(function (regla) {
+      document.getElementById(regla.id).setAttribute('aria-invalid', 'false');
+      document.getElementById('err-' + regla.id).textContent = '';
+    });
+    done.removeAttribute('data-visible');
+    form.style.display = '';
+    document.getElementById('nombre').focus();
+  });
+})();
+</script>
+</body>
+</html>
